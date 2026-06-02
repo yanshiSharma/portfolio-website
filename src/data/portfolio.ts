@@ -1,237 +1,272 @@
 export const PROFILE = {
-  name: "Amartya Anayachala",
+  name: "Yanshi Sharma",
   title: "Tech Enthusiast",
-  titles: ["AI/ML SCIENTIST", "DATA SCIENTIST", "SOLUTIONS ARCHITECT", "SOFTWARE DEVELOPER"],
-  bio: "Specializing in Generative AI, Computer Vision, and scalable Web Architecture.",
+  profileImage: "/logo.png",
+  titles: ["DATA ANALYST", "DATA SCIENTIST", "SOLUTIONS ARCHITECT", "AI AUTOMATION"],
+  bio: "Specializing in Generative AI, Data Analytics, RAG, and more\n#LearningasIGo",
   social: {
-    github: "https://github.com/azrael-2704",
-    linkedin: "https://www.linkedin.com/in/anayachala/",
-    instagram: "https://www.instagram.com/_amartyaa_/",
-    email: "mailto:anayachala.dev@gmail.com"
+    github: "https://github.com/yanshiSharma",
+    linkedin: "https://www.linkedin.com/in/yanshi-sharma/",
+    instagram: "https://www.instagram.com/yanshi4858/",
+    email: "mailto:yanshi12054@gmail.com"
   },
-  about: "I am a passionate AI/ML Scientist with a deep focus on Generative Models and Computer Vision. Bridging the gap between theoretical research and production-grade applications, I build systems that can see, understand, and create. When not training models, I'm architecting scalable full-stack applications.",
+  about: "Data and AI enthusiast with experience in Generative AI, RAG systems, LLMs, and AI-driven automation. Passionate about automating repetitive tasks to maximize focus on building impactful real-world solutions.",
   stats: [
     { label: "Years Experience", value: "1" },
     { label: "Models Deployed", value: "5+" },
-    { label: "Research Papers", value: "1" },
+    { label: "Hackathons Participated", value: "2" },
     { label: "Coffee/Day", value: "∞" }
   ]
 };
 
 export const SKILLS = [
-  // AI/ML - The Core
-  { id: "pytorch", name: "PyTorch", category: "ml", level: 95, version: "2.5", desc: "Deep Learning, Custom Architectures" },
-  { id: "tensorflow", name: "TensorFlow", category: "ml", level: 85, version: "2.18", desc: "Production Pipelines, TFX" },
-  { id: "transformers", name: "Transformers (HF)", category: "ml", level: 92, version: "4.46", desc: "LLMs, BERT, GPT, LoRA" },
-  { id: "opencv", name: "OpenCV", category: "ml", level: 88, version: "4.10", desc: "Computer Vision, Real-time Proc" },
-  { id: "langchain", name: "LangChain", category: "ml", level: 90, version: "0.3", desc: "RAG Systems, Agents" },
+  // AI Automation
+  { id: "n8n", name: "n8n", category: "automation", level: 90, version: "1.x", desc: "AI Agents, Workflow Orchestration" },
+  { id: "make", name: "Make", category: "automation", level: 80, version: "Cloud", desc: "No-Code Automation, Integrations" },
+  { id: "zapier", name: "Zapier", category: "automation", level: 75, version: "Cloud", desc: "Business Process Automation" },
+  { id: "mcp", name: "Model Context Protocol", category: "automation", level: 85, version: "Latest", desc: "Tool Calling, AI Integrations" },
+  { id: "claude-skills", name: "Claude Skills", category: "automation", level: 90, version: "Latest", desc: "Custom AI Workflows, Task Automation" },
 
   // Data Science & Viz
   { id: "pandas", name: "Pandas", category: "ds", level: 95, version: "2.2", desc: "Data Manipulation, Analysis" },
   { id: "powerbi", name: "Power BI", category: "ds", level: 85, version: "Pro", desc: "Business Intelligence Dashboards" },
   { id: "tableau", name: "Tableau", category: "ds", level: 80, version: "2024.3", desc: "Visual Analytics" },
   { id: "matplotlib", name: "Matplotlib / Seaborn", category: "ds", level: 90, version: "3.9", desc: "Scientific Visualization" },
-  { id: "sklearn", name: "Scikit-Learn", category: "ds", level: 92, version: "1.5", desc: "Classical ML Algorithms" },
+  { id: "numpy", name: "NumPy", category: "ds", level: 95, version: "2.3", desc: "Numerical Computing" },
 
   // Development - The Interface
-  { id: "react", name: "React + Vite", category: "dev", level: 90, version: "18.3", desc: "Modern UI, Component Systems" },
-  { id: "typescript", name: "TypeScript", category: "dev", level: 88, version: "5.7", desc: "Type-Safe Architecture" },
-  { id: "nextjs", name: "Next.js", category: "dev", level: 85, version: "15.0", desc: "SSR, Edge Functions" },
-  { id: "threejs", name: "Three.js / R3F", category: "dev", level: 75, version: "r170", desc: "3D Visualizations, WebGL" },
-  { id: "tailwind", name: "Tailwind CSS", category: "dev", level: 95, version: "3.4", desc: "Rapid Styling, Design Systems" },
-
-  // Operations - The Infrastructure
-  { id: "docker", name: "Docker", category: "ops", level: 85, version: "27.3", desc: "Containerization, Microservices" },
-  { id: "kubernetes", name: "Kubernetes", category: "ops", level: 75, version: "1.31", desc: "Orchestration, Scaling" },
-  { id: "aws", name: "AWS", category: "ops", level: 80, version: "SDK v3", desc: "SageMaker, EC2, Lambda" },
-  { id: "fastapi", name: "FastAPI", category: "ops", level: 92, version: "0.115", desc: "High-Perf Async APIs" },
+  { id: "react", name: "React + Vite", category: "dev", level: 60, version: "18.3", desc: "Modern UI, Component Systems" },
+  { id: "html", name: "HTML/CSS", category: "dev", level: 90, version: "5", desc: "Semantic Markup, Responsive Design" },
+  { id: "nextjs", name: "Next.js", category: "dev", level: 70, version: "15.0", desc: "SSR, Edge Functions" },
+  { id: "threejs", name: "Three.js / R3F", category: "dev", level: 65, version: "r170", desc: "3D Visualizations, WebGL" },
 
   // Core - The Foundation
   { id: "python", name: "Python", category: "core", level: 98, version: "3.9+", desc: "Algorithms, Scripting, Everything" },
   { id: "cpp", name: "C++", category: "core", level: 70, version: "23", desc: "Low-Level Optimization" },
-  { id: "sql", name: "SQL/NoSQL", category: "core", level: 85, version: "2023", desc: "Postgres, MongoDB, Vector DBs" },
+  { id: "sql", name: "MS SQL Server", category: "core", level: 85, version: "2023", desc: "Postgres, MongoDB, Vector DBs" },
 ];
 
 export const PROJECTS = [
   {
     id: "p1",
-    title: "NEURAL STYLE ENGINE",
-    desc: "Real-time semantic style transfer engine capable of processing video streams at 60 FPS using simplified VGG-19 architecture and WebGL acceleration.",
+    title: "BEHROUZ BIRYANI ANALYTICS",
+    desc: "End-to-end menu and customer analytics project uncovering pricing strategies, product performance, demographic trends, and business opportunities from multi-sheet Excel datasets.",
     details: [
-      "Implemented custom VGG-19 perceptual loss function for high-fidelity style transfer.",
-      "Optimized compute shaders for WebGL to achieve 60FPS directly in the browser.",
-      "Hybrid architecture offloading heavy tensor operations to a FastAPI backend."
+      "Consolidated and cleaned data from multiple menu categories through webscraping",
+      "Performed exploratory data analysis to identify pricing tiers, category performance, customer demographics, and upselling opportunities.",
+      "Built dashboard-ready visualizations and generated actionable business insights for menu optimization and marketing strategy."
     ],
-    tech: ["PyTorch", "React", "WebGL", "FastAPI"],
-    domain: "Computer Vision",
+    tech: ["Python", "Pandas", "NumPy", "Matplotlib", "BeautifulSoup", "Excel"],
+    domain: "Retail and Logistics Analytics",
     link: "https://style-engine.demo",
-    github: "https://github.com/azrael-2704/neural-style",
-    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop", // Abstract Glitch Art
-    featured: true,
-    type: 'research'
-  },
-  {
-    id: "p2",
-    title: "LATENT SPACE EXPLORER",
-    desc: "Interactive 3D visualization tool for high-dimensional vector embeddings, allowing users to traverse semantic relationships in LLM latent spaces.",
-    details: [
-      "Applied UMAP for dimensionality reduction of 1536d embeddings to 3D space.",
-      "Built high-performance 3D scatter plot with Raycasting for 50k+ points.",
-      "Implemented efficiently cached spatial indexing for sub-100ms queries."
-    ],
-    tech: ["Three.js", "TensorFlow.js", "D3", "UMAP"],
-    domain: "NLP / Visualization",
-    link: "https://latent.demo",
-    github: "https://github.com/azrael-2704/latent-viz",
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop", // Cyberpunk Network
+    github: "https://github.com/yanshiSharma/Behrouz-Biryani-Analysis",
+    image: "public/project-images/pimage-1.jpg",
     featured: true,
     type: 'experiment'
   },
   {
-    id: "p3",
-    title: "QUANTUM FRAUD DETECTOR",
-    desc: "GNN-based anomaly detection pipeline processing 1M+ transactions/sec. reduced false positives by 40% using temporal graph networks.",
+    id: "p2",
+    title: "OLA CAB OPERATIONS ANALYTICS",
+    desc: "End-to-end ride-hailing analytics solution analyzing 20,000+ bookings using SQL and Power BI to uncover revenue trends, cancellation patterns, vehicle performance, and service quality insights.",
     details: [
-      "Leveraged Temporal Graph Networks (TGN) to capture dynamic transaction flows.",
-      "Scalable ingestion pipeline using Kafka and Apache Flink.",
-      "Deployed to Kubernetes with auto-scaling inference endpoints."
+      "Designed a SQL analytics layer with 10 reusable business-focused views covering revenue, cancellations, ratings, customer behavior, and vehicle performance.",
+      "Built a 5-page interactive Power BI dashboard featuring KPI tracking, cancellation analysis, payment insights, vehicle performance, and customer ratings.",
+      "Identified operational bottlenecks including driver-related cancellations, payment preferences, and fleet utilization opportunities through data-driven analysis."
     ],
-    tech: ["Python", "Neo4j", "PyTorch Geometric", "Kafka"],
-    domain: "FinTech / Security",
-    image: "https://images.unsplash.com/photo-1558494949-efc527651087?q=80&w=1740&auto=format&fit=crop", // Data Network
+    tech: ["MySQL", "Power BI", "DAX", "Power Query", "SQL"],
+    domain: "Transportation and Operations Analytics",
+    link: "",
+    github: "https://github.com/yanshiSharma/Ola-Cab-Analysis",
+    image: "public/project-images/pimage-2.png",
     featured: false,
-    type: 'product'
+    type: "experiment"
+  },
+  {
+    id: "p3",
+    title: "FORTUNE 500 REVENUE & GROWTH ANALYTICS",
+    desc: "Automated business intelligence pipeline that scrapes live Fortune 500 company data, performs revenue and growth analysis, and delivers interactive dashboards for industry, geography, and company-level insights.",
+    details: [
+      "Built an end-to-end web scraping pipeline using BeautifulSoup and Pandas to extract, clean, and analyze live Fortune 500 company data directly from Wikipedia.",
+      "Developed 14 SQL Server analytical queries covering revenue leadership, growth trends, industry performance, employee distribution, and headquarters-level analysis.",
+      "Designed an interactive Power BI dashboard showcasing revenue leaders, growth champions, industry dominance, workforce distribution, and geographic business concentration."
+    ],
+    tech: [
+      "Python",
+      "BeautifulSoup",
+      "Pandas",
+      "SQL Server",
+      "Power BI",
+      "Matplotlib",
+      "Seaborn"
+    ],
+    domain: "Business Intelligence & Financial Analytics",
+    link: "",
+    github: "https://github.com/yanshiSharma/Fortune-500-Companies-Revenue-Growth-Analysis-with-Web-Scraping",
+    image: "public/project-images/pimage-3.jpg", // Fortune 500 Analysis
+    featured: true,
+    type: "experiment"
   },
   {
     id: "p4",
-    title: "GENERATIVE VIDEO SYNTHESIS",
-    desc: "Novel diffusion-based architecture for coherent video generation from text prompts, optimizing temporal consistency.",
+    title: "SALES INTELLIGENCE DASHBOARD",
+    desc: "Interactive multi-page Power BI dashboard analyzing 7,991 sales transactions across 3 years, delivering actionable insights into revenue trends, channel performance, customer behavior, product demand, and geographic pricing patterns.",
     details: [
-      "Introduced temporal attention layers to standard Diffusion Transformers.",
-      "Fine-tuned on custom cinematic dataset for consistent color grading.",
-      "Optimized inference time by 30% using TensorRT quantization."
+      "Designed a star-schema data model integrating orders, customers, products, and regional data to create a unified business intelligence solution.",
+      "Built a 5-page Power BI dashboard featuring executive KPIs, channel-wise revenue analysis, daily sales trends, regional pricing intelligence, and product performance insights.",
+      "Developed DAX-driven metrics and interactive slicers enabling stakeholders to explore 3 years of sales performance across 100 regions, 50 customers, and multiple distribution channels."
     ],
-    tech: ["Diffusers", "Python", "CUDA", "FFmpeg"],
-    domain: "Generative AI",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop", // Abstract Wave
-    featured: false,
-    type: 'research'
+    tech: [
+      "Power BI",
+      "DAX",
+      "Power Query",
+      "Data Modeling",
+      "Star Schema",
+      "Business Intelligence"
+    ],
+    domain: "Sales Analytics & Business Intelligence",
+    link: "",
+    github: "https://github.com/yanshiSharma/SalesReport-Dashboard",
+    image: "public/project-images/pimage-4.png.webp",
+    featured: true,
+    type: "experiment"
+  },
+  {
+    id: "p5",
+    title: "EMPLOYEE CHURN PREDICTION PLATFORM",
+    desc: "End-to-end HR analytics solution leveraging machine learning, and interactive dashboards to predict employee attrition, identify churn drivers, and enable proactive retention strategies.",
+    details: [
+      "Built a cloud-native analytics pipeline using BigQuery, Python, and PyCaret to process HR data, train predictive models, and generate employee churn risk scores.",
+      "Developed and evaluated multiple machine learning models, selecting Random Forest with an F1-score of 0.97 and ROC-AUC of 0.99 for high-confidence attrition prediction.",
+      "Created an executive-ready Looker Studio dashboard providing department-level risk monitoring, churn insights, satisfaction analysis, and actionable HR recommendations."
+    ],
+    tech: [
+      "Python",
+      "PyCaret",
+      "Scikit-learn",
+      "Google BigQuery",
+      "Google Colab",
+      "Looker Studio",
+      "Pandas",
+      "Matplotlib"
+    ],
+    domain: "People Analytics & HR Intelligence",
+    link: "",
+    github: "https://github.com/yanshiSharma/Employee-Churn-Analysis",
+    image: "public/project-images/pimage-5.png",
+    featured: true,
+    type: "ml"
   }
 ];
 
 export const TIMELINE = [
   {
     id: "t1",
-    title: "ML Engineer Intern",
-    org: "Guardian India",
-    date: "2023 - Present",
-    desc: "Developing automated fraud detection pipelines using GNNs. Deployed 3 models to production reducing latency by 40%.",
+    title: "Solution Architect Intern",
+    org: "EMB Global",
+    date: "Jan 2026 - Present",
+    desc: "Working as a Solution Architect Intern at EMB Global, understanding intricacies of building scalable AI-driven solutions involving RAG, LLM Prompting and Voice AI. Collaborating with cross-functional teams to implement automation workflows and optimize system performance.",
     type: "work",
-    side: "right"
+    side: "left"
   },
   {
     id: "t2",
-    title: "Best Research Paper",
-    org: "International Conference on AI",
-    date: "Dec 2023",
-    desc: "Awarded for 'Optimizing Latent Space Traversal in GANs'. Recognized for novel approach in generative consistency.",
+    title: "Intel Hackathon Participant",
+    org: "External College",
+    date: "2025",
+    desc: "Particiapted and built a AI driven Travel Assistant Chatbot in a team of 4 members.",
     type: "achievement",
-    side: "left"
-  },
-  {
-    id: "t3",
-    title: "TensorFlow Developer Certificate",
-    org: "Google",
-    date: "Aug 2023",
-    desc: "Professional certification validating expertise in building and deploying models using TensorFlow.",
-    type: "certification",
     side: "right"
   },
   {
-    id: "t4",
-    title: "Freelance Fullstack Dev",
-    org: "Self-Employed",
-    date: "2021 - 2023",
-    desc: "Architected scalable web ecosystems for fintech startups. Built real-time trading dashboards using React & WebSocket.",
+    id: "t3",
+    title: "Data Analyst Intern",
+    org: "Infosys Springboard",
+    date: "Oct-Dec 2024",
+    desc: "Build 5+ data visualization dashboards on PowerBI, enabling storytelling",
     type: "work",
     side: "left"
+  },
+  {
+    id: "t4",
+    title: "National Hackathon Participant",
+    org: "Smart India Hackathon",
+    date: "2023",
+    desc: "Build an mobile application for direct communication between farmers and end consumers.",
+    type: "achievement",
+    side: "right"
   },
   {
     id: "t5",
     title: "B.Tech in Computer Science",
-    org: "University of Technology",
-    date: "2019 - 2023",
-    desc: "Specialized in Artificial Intelligence. Graduated with Honors. Capstone project: 'Autonomous Drone Navigation via RL'.",
+    org: "Vellore Institute of Technology",
+    date: "2022 - 2026",
+    desc: "Specialized in Artificial Intelligence and Robotics. CGPA: 8.39/10. Relevant coursework: Data Structures, Algorithms, AI, ML, CV, NLP.",
     type: "education",
-    side: "right"
-  },
-  {
-    id: "t6",
-    title: "AWS Certified Solutions Architect",
-    org: "Amazon Web Services",
-    date: "Jan 2022",
-    desc: "Validated ability to design distributed systems on AWS.",
-    type: "certification",
-    side: "left"
-  },
-  {
-    id: "t7",
-    title: "National Hackathon Winner",
-    org: "Smart India Hackathon",
-    date: "2021",
-    desc: "Secured 1st place among 500+ teams for building an AI-powered disaster response system.",
-    type: "achievement",
     side: "left"
   }
 ];
 
 export const PHILOSOPHY = [
-  { id: "ph1", title: "First Principles", desc: "Break complexity down to its fundamental truths. Build up from there." },
-  { id: "ph2", title: "Human-AI Symbiosis", desc: "AI should augment human intelligence, not replace it." },
-  { id: "ph3", title: "Open Source", desc: "Knowledge grows when shared. Contribute back to the collective intelligence." },
-  { id: "ph4", title: "Scalability", desc: "Design systems that can evolve and handle exponential growth." }
+  {
+    id: "ph1",
+    title: "Context is King",
+    desc: "The quality of intelligence depends on the quality of context available to the system."
+  },
+  {
+    id: "ph2",
+    title: "Automation First",
+    desc: "If a process can be automated reliably, it should be automated."
+  },
+  {
+    id: "ph3",
+    title: "Systems Over Tasks",
+    desc: "Build scalable systems that solve problems repeatedly instead of solving them once."
+  },
+  {
+    id: "ph4",
+    title: "Continuous Learning",
+    desc: "The best technology professionals stay curious and adapt faster than the industry changes."
+  }
 ];
 
 export const ROADMAP = [
-  { id: "r1", title: "Launch Startup", date: "Q1 2025", desc: "Deploy MVP for Generative AI Video tool.", status: "planned" },
-  { id: "r2", title: "PhD Research", date: "2026", desc: "Deep dive into Neuro-symbolic AI.", status: "planned" },
-  { id: "r3", title: "Open Source Library", date: "Q4 2024", desc: "Release 'TensorFlow-lite-extended' for edge devices.", status: "in-progress" }
+  { id: "r1", title: "VibeCoding Implementation", date: "Q3-4 2026", desc: "Deploy MVP for Data Science related projects.", status: "in-progress" },
+  { id: "r2", title: "Azure and DataBricks Certifications", date: "2027", desc: "Dive into data engineering basics and AI optimizations", status: "planned" }
 ];
 
 export const BLOG_POSTS = [
   { 
       id: "b1", 
-      title: "The Future of Generative Video", 
-      date: "Oct 12, 2023", 
+      title: "From Antigravity to WebMCP: Watching the Web Become AI-Native", 
+      date: "June 2, 2026", 
       readTime: "5 min", 
-      desc: "Exploring diffusion models and temporal consistency in video synthesis.", 
-      tags: ["AI", "Generative", "Video"],
-      link: "#" 
+      desc: "Evolution of the web from static pages to dynamic AI agents, and how the Web Model Context Protocol (WebMCP)  is enabling a new era of AI-native applications.", 
+      tags: ["AI", "GenAI", "DataScience"],
+      link: "https://www.linkedin.com/in/yanshi-sharma/recent-activity/all/" 
   },
   { 
       id: "b2", 
-      title: "Optimizing Graph Neural Networks", 
-      date: "Sep 28, 2023", 
+      title: "RAG: Past, Present and Future", 
+      date: "May 20, 2026", 
       readTime: "8 min", 
       desc: "Techniques for scaling GNNs to billion-edge graphs using PyTorch Geometric.", 
-      tags: ["GNN", "Optimization", "PyTorch"],
-      link: "#" 
+      tags: ["Data Science", "AI", "PyTorch"],
+      link: "https://www.linkedin.com/in/yanshi-sharma/recent-activity/all/" 
   },
   { 
       id: "b3", 
-      title: "Building Resilient APIs with FastAPI", 
-      date: "Aug 15, 2023", 
+      title: "Infosys Internship Project", 
+      date: "Dec 15, 2025", 
       readTime: "6 min", 
-      desc: "Best practices for async architecture and error handling in high-load systems.", 
-      tags: ["FastAPI", "Backend", "Python"],
-      link: "#" 
+      desc: "Overview of data driven dashboard made during my Infosys Springboard Internship in a team of 5 members", 
+      tags: ["PowerBI", "Kaggle", "DAX", "Data Visualization", "Data Analytics"],
+      link: "https://www.linkedin.com/in/yanshi-sharma/recent-activity/all/" 
   }
 ];
 
 export const SKILLS_CATEGORIES = [
-    { id: "ml", label: "AI / Machine Learning", color: "cyan", order: 0 },
+    { id: "automation", label: "AI Automation", color: "cyan", order: 0 },
     { id: "ds", label: "Data Science", color: "purple", order: 1 },
     { id: "dev", label: "Web Development", color: "green", order: 2 },
-    { id: "ops", label: "DevOps / Cloud", color: "amber", order: 3 },
-    { id: "core", label: "Core / Languages", color: "pink", order: 4 }
+    { id: "core", label: "Core / Languages", color: "pink", order: 3 }
 ];

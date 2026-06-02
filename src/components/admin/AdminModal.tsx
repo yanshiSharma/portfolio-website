@@ -2,9 +2,21 @@
 import React, { useState, useEffect } from 'react';
 import { motion, Reorder } from 'framer-motion';
 import { X, Save, RefreshCw, Terminal, ChevronLeft, Plus, Edit2, Trash2 } from 'lucide-react';
-import { db, auth } from '../../lib/firebase';
-import { doc, setDoc, deleteDoc, collection, writeBatch } from 'firebase/firestore';
-import { signOut } from 'firebase/auth';
+
+const db: any = null;
+const auth: any = null;
+const doc: any = (..._args: any[]) => null;
+const setDoc: any = async () => null;
+const deleteDoc: any = async () => null;
+const collection: any = (..._args: any[]) => null;
+const writeBatch: any = (_db: any) => ({
+    set: (_ref: any, _data: any, _options?: any) => null,
+    update: (_ref: any, _data: any) => null,
+    delete: (_ref: any) => null,
+    commit: async () => null,
+});
+const signOut: any = async (_auth: any) => null;
+
 import ProjectForm from './forms/ProjectForm';
 import SkillForm from './forms/SkillForm';
 import TimelineForm from './forms/TimelineForm';

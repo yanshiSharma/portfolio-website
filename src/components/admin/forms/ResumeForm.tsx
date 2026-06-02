@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Upload, FileText, Check, AlertCircle } from 'lucide-react';
-import { storage } from '../../../lib/firebase';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 interface ResumeFormProps {
     initialData?: any;
@@ -30,19 +28,13 @@ const ResumeForm: React.FC<ResumeFormProps> = ({ initialData, onChange, onBusy }
         setSuccess('');
 
         try {
-            console.log("Starting resume upload...");
-            const storageRef = ref(storage, `resumes/${Date.now()}_${file.name}`);
-            const snapshot = await uploadBytes(storageRef, file);
-            console.log("Resume uploaded, getting URL...");
-            const downloadURL = await getDownloadURL(snapshot.ref);
-            console.log("Resume URL:", downloadURL);
-            
-            setPreviewUrl(downloadURL);
-            onChange({ ...initialData, resumeUrl: downloadURL });
-            setSuccess('Resume uploaded successfully!');
+            const previewURL = URL.createObjectURL(file);
+            setPreviewUrl(previewURL);
+            onChange({ ...initialData, resumeUrl: previewURL });
+            setSuccess('Resume preview ready locally.');
         } catch (err) {
-            console.error("Resume upload failed:", err);
-            setError('Upload failed. ' + (err as any).message);
+            console.error('Resume preview failed:', err);
+            setError('Preview generation failed. ' + (err as any).message);
         } finally {
             setUploading(false);
             if (onBusy) onBusy(false);

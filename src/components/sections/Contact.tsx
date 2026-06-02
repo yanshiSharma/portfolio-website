@@ -20,21 +20,34 @@ const Contact: React.FC = () => {
     }>({ isOpen: false, title: '', message: '', type: 'info' });
 
     useEffect(() => {
-        // Initialize EmailJS explicitly
         const key = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
         if (key) emailjs.init(key);
     }, []);
 
+    const emailHref = profile?.social?.email
+        ? profile.social.email.startsWith('mailto:')
+            ? profile.social.email
+            : `mailto:${profile.social.email}`
+        : undefined;
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setFormState('encrypting');
 
-        // Debug Logging
-        console.log("Attempting EmailJS Send with keys:", {
-            Service: import.meta.env.VITE_EMAILJS_SERVICE_ID ? 'Received' : 'MISSING',
-            Template: import.meta.env.VITE_EMAILJS_TEMPLATE_ID ? 'Received' : 'MISSING',
-            Key: import.meta.env.VITE_EMAILJS_PUBLIC_KEY ? 'Received' : 'MISSING'
-        });
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            setAlertState({
+                isOpen: true,
+                title: 'CONFIGURATION ERROR',
+                message: 'EmailJS is not configured correctly. Please check the environment settings.',
+                type: 'error'
+            });
+            return;
+        }
+
+        setFormState('encrypting');
 
         const formData = new FormData(e.currentTarget);
         const templateParams = {
@@ -45,17 +58,9 @@ const Contact: React.FC = () => {
         };
 
         try {
-            await Promise.all([
-                // Min animation time
-                new Promise(resolve => setTimeout(resolve, 1500)),
-                // Actual request
-                emailjs.send(
-                    import.meta.env.VITE_EMAILJS_SERVICE_ID,
-                    import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-                    templateParams
-                )
-            ]);
-            
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            await emailjs.send(serviceId, templateId, templateParams);
+
             setFormState('sent');
             setAlertState({
                 isOpen: true,
@@ -69,9 +74,8 @@ const Contact: React.FC = () => {
                 (e.target as HTMLFormElement).reset();
             }, 3000);
         } catch (error: any) {
-            console.error('Transmission failed details:', error);
             const errorMessage = error?.text || error?.message || 'Unknown network error';
-            
+
             setFormState('idle');
             setAlertState({
                 isOpen: true,
@@ -82,19 +86,23 @@ const Contact: React.FC = () => {
         }
     };
 
+    const handleEmailClick = () => {
+        if (emailHref) {
+            window.location.href = emailHref;
+        }
+    };
+
     return (
         <section className="pt-[34px] pb-20 px-6 md:px-16 relative z-10 w-full overflow-hidden">
-             
-             <CyberAlert 
+            <CyberAlert 
                 isOpen={alertState.isOpen}
                 onClose={() => setAlertState(prev => ({ ...prev, isOpen: false }))}
                 title={alertState.title}
                 message={alertState.message}
                 type={alertState.type}
-             />
+            />
 
-             {/* Header */}
-             <motion.div 
+            <motion.div 
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="mb-16 mt-[-10px]"
@@ -111,14 +119,11 @@ const Contact: React.FC = () => {
             </motion.div>
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-                
-                {/* Left: Info Terminal */}
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="bg-[#0c121e]/80 border border-white/10 rounded-xl p-8 backdrop-blur-md relative overflow-hidden"
                 >
-                    {/* Decor */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/5 rounded-full blur-2xl -z-10" />
 
                     <div className="flex items-center gap-2 text-cyan-500/70 font-mono text-sm mb-6">
@@ -132,29 +137,38 @@ const Contact: React.FC = () => {
                         </p>
                         
                         <div className="space-y-4 pt-4">
-                            <button onClick={() => window.location.href = profile.social.email.startsWith('mailto:') ? profile.social.email : `mailto:${profile.social.email}`} className="flex items-center gap-4 text-gray-400 hover:text-cyan-400 transition-colors cursor-pointer group w-full focus:outline-none">
+                            <button
+                                type="button"
+                                onClick={handleEmailClick}
+                                disabled={!emailHref}
+                                className="flex items-center gap-4 text-gray-400 hover:text-cyan-400 transition-colors cursor-pointer group w-full focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+                            >
                                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
                                     <Mail size={18} />
                                 </div>
-                                <span className="font-mono text-sm">anayachala.dev [at] gmail</span>
+                                <span className="font-mono text-sm">{profile?.social?.email ?? 'EMAIL_UNAVAILABLE'}</span>
                             </button>
 
-                            <a href={profile.social.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors cursor-pointer group">
-                                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                                    <Github size={18} />
-                                </div>
-                                <span className="font-mono text-sm">GITHUB_REPO</span>
-                            </a>
+                            {profile?.social?.github && (
+                                <a href={profile.social.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors cursor-pointer group">
+                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                                        <Github size={18} />
+                                    </div>
+                                    <span className="font-mono text-sm">GITHUB_REPO</span>
+                                </a>
+                            )}
 
-                            <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-gray-400 hover:text-blue-400 transition-colors cursor-pointer group">
-                                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
-                                    <Linkedin size={18} />
-                                </div>
-                                <span className="font-mono text-sm">PROFESSIONAL_NETWORK</span>
-                            </a>
+                            {profile?.social?.linkedin && (
+                                <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-gray-400 hover:text-blue-400 transition-colors cursor-pointer group">
+                                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors">
+                                        <Linkedin size={18} />
+                                    </div>
+                                    <span className="font-mono text-sm">PROFESSIONAL_NETWORK</span>
+                                </a>
+                            )}
 
-                            {(profile.social as any).instagram && (
-                                <a href={(profile.social as any).instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-gray-400 hover:text-pink-400 transition-colors cursor-pointer group">
+                            {profile?.social?.instagram && (
+                                <a href={profile.social.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-gray-400 hover:text-pink-400 transition-colors cursor-pointer group">
                                     <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-pink-500/20 transition-colors">
                                         <Instagram size={18} />
                                     </div>
@@ -164,7 +178,6 @@ const Contact: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Status Log */}
                     <div className="mt-8 pt-[34px] border-t border-white/5 font-mono text-xs text-green-500/70 space-y-1">
                         <div>{'>'} PORT 443: OPEN</div>
                         <div>{'>'} HANDSHAKE: ACKNOWLEDGED</div>
@@ -172,7 +185,6 @@ const Contact: React.FC = () => {
                     </div>
                 </motion.div>
 
-                {/* Right: Input Form */}
                 <motion.div 
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -180,7 +192,6 @@ const Contact: React.FC = () => {
                     className="mt-20"
                 >
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Name */}
                         <div className="relative group">
                             <label className={`absolute left-0 -top-6 font-mono text-xs transition-colors ${focusedField === 'name' ? 'text-cyan-400' : 'text-gray-500'}`}>
                                 IDENTITY_KEY
@@ -196,7 +207,6 @@ const Contact: React.FC = () => {
                             />
                         </div>
 
-                        {/* Email */}
                         <div className="relative group pt-4">
                             <label className={`absolute left-0 -top-2 font-mono text-xs transition-colors ${focusedField === 'email' ? 'text-cyan-400' : 'text-gray-500'}`}>
                                 RETURN_ADDRESS
@@ -212,7 +222,6 @@ const Contact: React.FC = () => {
                             />
                         </div>
 
-                        {/* Message */}
                         <div className="relative group pt-4">
                             <label className={`absolute left-0 -top-2 font-mono text-xs transition-colors ${focusedField === 'msg' ? 'text-cyan-400' : 'text-gray-500'}`}>
                                 DATA_PACKET
@@ -228,16 +237,15 @@ const Contact: React.FC = () => {
                             />
                         </div>
 
-                        {/* Submit Button */}
                         <div className="pt-4">
                             <button 
                                 type="submit" 
                                 disabled={formState !== 'idle'}
-                                className={`
-                                    w-full py-4 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono tracking-widest uppercase
+                                className={
+                                    `w-full py-4 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono tracking-widest uppercase
                                     hover:bg-cyan-500/20 hover:border-cyan-400 transition-all flex items-center justify-center gap-3 group
-                                    disabled:opacity-50 disabled:cursor-not-allowed
-                                `}
+                                    disabled:opacity-50 disabled:cursor-not-allowed`
+                                }
                             >
                                 {formState === 'idle' && (
                                     <>

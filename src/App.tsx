@@ -18,7 +18,6 @@ import Roadmap from './components/sections/Roadmap'
 import Achievements from './components/sections/Achievements'
 import Blog from './components/sections/Blog'
 import Resume from './components/sections/Resume'
-import AdminModal from './components/admin/AdminModal'
 
 const AppContent = () => {
   const location = useLocation();
@@ -29,12 +28,6 @@ const AppContent = () => {
     isHome ? 'LANDING' : 'BOOTING'
   );
   const [isResizing, setIsResizing] = useState(false);
-  const [adminSection, setAdminSection] = useState<string | null>(null);
-
-  const handleAdminMode = (section: string) => {
-    setAdminSection(section);
-  };
-  
   const [mobileTerminalOpen, setMobileTerminalOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -44,7 +37,6 @@ const AppContent = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
 
   const handleInitiate = () => {
     setSystemState('BOOTING');
@@ -82,7 +74,6 @@ const AppContent = () => {
             layout
             initial={false}
             animate={{ 
-              // Desktop (lg): 40% (Home) / 25% (Subpage) | Mobile: 100% (Booting) -> 0% (Online)
               width: ((systemState as string) === 'BOOTING' || (systemState as string) === 'LANDING') 
                 ? '100%' 
                 : (windowWidth >= 1024 
@@ -91,10 +82,10 @@ const AppContent = () => {
               left: (systemState === 'ONLINE' && windowWidth >= 1024) 
                 ? (isHome ? 'calc(12.5% - 150px)' : '0') 
                 : '0',
-              top: (systemState === 'ONLINE' && windowWidth >= 1024) ? '88px' : '0', // Mobile full screen
+              top: (systemState === 'ONLINE' && windowWidth >= 1024) ? '88px' : '0',
               opacity: (systemState === 'ONLINE' && windowWidth < 1024 && !mobileTerminalOpen) ? 0 : 1,
-              height: (systemState === 'ONLINE' && windowWidth < 1024 && mobileTerminalOpen) ? '100%' : 'auto', // Full height on mobile open
-              bottom: (systemState === 'ONLINE' && windowWidth < 1024 && mobileTerminalOpen) ? '0' : '10px' // Stretch
+              height: (systemState === 'ONLINE' && windowWidth < 1024 && mobileTerminalOpen) ? '100%' : 'auto',
+              bottom: (systemState === 'ONLINE' && windowWidth < 1024 && mobileTerminalOpen) ? '0' : '10px'
             }}
             transition={{ 
               type: "spring", 
@@ -116,7 +107,6 @@ const AppContent = () => {
               <div className="w-full h-full max-w-3xl pointer-events-auto relative">
                   <TerminalIntro 
                     onComplete={handleBootComplete} 
-                    onAdminMode={handleAdminMode}
                     onMinimize={windowWidth < 1024 && systemState === 'ONLINE' ? () => setMobileTerminalOpen(false) : undefined}
                     instant={systemState === 'ONLINE'} 
                     isResizing={isResizing} 
@@ -144,7 +134,6 @@ const AppContent = () => {
       <AnimatePresence mode="wait">
         {systemState !== 'BOOTING' && (
             <Routes location={location} key={location.pathname}>
-               {/* Landing Page Route */}
                <Route path="/" element={
                    systemState === 'LANDING' ? (
                       <MainLayout showNavbar={false}>
@@ -152,12 +141,11 @@ const AppContent = () => {
                       </MainLayout>
                    ) : (
                       <MainLayout showNavbar={true} className="bg-transparent pointer-events-none">
-                         <div /> {/* Home content handled by NeuralNav */}
+                         <div />
                       </MainLayout>
                    )
                } />
 
-               {/* Subpages */}
                <Route path="/about" element={<MainLayout showNavbar={true}><About /></MainLayout>} />
                <Route path="/skills" element={<MainLayout showNavbar={true}><Skills /></MainLayout>} />
                <Route path="/philosophy" element={<MainLayout showNavbar={true}><Philosophy /></MainLayout>} />
@@ -171,18 +159,7 @@ const AppContent = () => {
             </Routes>
         )}
       </AnimatePresence>
-
-      {/* Layer 5: Admin Modal Overlay */}
-      <AnimatePresence>
-        {adminSection && (
-            <AdminModal 
-                section={adminSection} 
-                onClose={() => setAdminSection(null)} 
-            />
-        )}
-      </AnimatePresence>
       
-      {/* Mobile Terminal Toggle FAB */}
       {systemState === 'ONLINE' && !mobileTerminalOpen && (
         <div className="lg:hidden fixed bottom-6 right-6 z-50">
             <button 
@@ -195,7 +172,6 @@ const AppContent = () => {
       )}
 
       <style>{`
-        /* Dynamic Layout Adjustment for Main Content - Desktop Only */
         @media (min-width: 1024px) {
           ${systemState === 'ONLINE' && !isHome ? `
             main { 

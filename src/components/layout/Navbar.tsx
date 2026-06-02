@@ -43,9 +43,9 @@ const Navbar: React.FC = () => {
     const allLinks = [...STATIC_LINKS, ...GROUP_TECHNICAL, ...GROUP_PROFESSIONAL];
     const currentLink = allLinks.find(l => l.path === location.pathname);
     if (currentLink) {
-        document.title = `Amartya | ${currentLink.label}`;
+        document.title = `Yanshi | ${currentLink.label}`;
     } else {
-        document.title = "Amartya Anayachala | Portfolio";
+        document.title = "Yanshi Sharma | Portfolio";
     }
   }, [location.pathname]);
 
@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
         />
         <div className="flex flex-col">
             <span className="font-mono text-lg font-bold tracking-tighter text-white leading-none group-hover:text-cyan-400 transition-colors">
-            AMARTYA<span className="text-cyan-400 animate-pulse">_</span>DEV
+            YANSHI<span className="text-cyan-400 animate-pulse">_</span>DEV
             </span>
             <span className="text-[10px] text-gray-500 font-mono tracking-widest block">I Build Things That Think</span>
         </div>

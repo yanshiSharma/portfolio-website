@@ -12,7 +12,7 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
   const { profile } = useProfile();
 
   React.useEffect(() => {
-    document.title = "Amartya | Portfolio";
+    document.title = "Yanshi | Portfolio";
   }, []);
 
   return (
@@ -34,8 +34,8 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
         >
           <div className="absolute inset-0 bg-cyan-500/10 blur-[100px] rounded-full"></div>
           <img 
-              src="/logo.png" 
-              alt="Logo" 
+              src="/favicon.png" 
+              alt="Profile" 
               className="w-72 h-72 md:w-[450px] md:h-[450px] object-cover rounded-full relative z-10"
               style={{ maskImage: 'radial-gradient(circle, black 40%, transparent 70%)', WebkitMaskImage: 'radial-gradient(circle, black 40%, transparent 70%)' }} 
           />
@@ -63,10 +63,10 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
               className="flex flex-col items-center md:items-start leading-none mb-6"
             >
               <h1 className="text-4xl md:text-6xl lg:text-8xl font-black font-mono tracking-tighter text-white mb-2 md:mb-4">
-                <GlitchText text="AMARTYA" />
+                <GlitchText text="YANSHI" />
               </h1>
               <h1 className="text-4xl md:text-6xl lg:text-8xl font-black font-mono tracking-tighter text-white">
-                <GlitchText text="ANAYACHALA" />
+                <GlitchText text="SHARMA" />
               </h1>
             </motion.div>
 
@@ -87,7 +87,7 @@ const Hero: React.FC<HeroProps> = ({ onStart }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, type: "spring", stiffness: 100, damping: 20 }}
-                className="max-w-xl text-gray-400 leading-relaxed mb-10 text-lg"
+                className="max-w-xl text-gray-400 leading-relaxed mb-10 text-lg whitespace-pre-line"
             >
                 {profile.bio}
             </motion.div>

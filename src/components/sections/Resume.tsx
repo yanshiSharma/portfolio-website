@@ -11,7 +11,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 import GlitchText from '../GlitchText';
 
 const Resume: React.FC = () => {
-    const resumePath = "/AmartyaResume.pdf";
+    const resumePath = "public/Resume-Yanshi.pdf";
     const [numPages, setNumPages] = useState<number | null>(null);
     const [pageWidth, setPageWidth] = useState(800);
 
@@ -52,7 +52,7 @@ const Resume: React.FC = () => {
 
                  <motion.a 
                     href={resumePath}
-                    download="Amartya_Anayachala_Resume.pdf"
+                    download="Yanshi_Sharma_Resume.pdf"
                     initial={{ opacity: 0, x: 20 }} 
                     animate={{ opacity: 1, x: 0 }}
                     className="flex items-center gap-2 px-6 py-3 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-sm hover:bg-cyan-500/20 transition-colors"
