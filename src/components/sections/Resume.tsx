@@ -1,37 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Download } from 'lucide-react';
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
-
-// Initialize worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-
 import GlitchText from '../GlitchText';
 
 const Resume: React.FC = () => {
-    const resumePath = "public/Resume-Yanshi.pdf";
-    const [numPages, setNumPages] = useState<number | null>(null);
-    const [pageWidth, setPageWidth] = useState(800);
-
-    function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
-        setNumPages(numPages);
-    }
-
-    // Responsive width handler
-    useEffect(() => {
-        function handleResize() {
-            const container = document.getElementById('resume-container');
-            if (container) {
-                const padding = window.innerWidth < 768 ? 20 : 60;
-                setPageWidth(container.clientWidth - padding); 
-            }
-        }
-        window.addEventListener('resize', handleResize);
-        setTimeout(handleResize, 100); // Initial call with slight delay for layout
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    const resumePath = '/Resume-Yanshi.pdf';
 
     return (
         <section className="pt-[34px] pb-20 px-6 md:px-16 relative z-10 w-full overflow-hidden flex flex-col h-[calc(100vh-4rem)]">
@@ -63,33 +36,18 @@ const Resume: React.FC = () => {
 
             <div className="max-w-5xl mx-auto w-full flex-grow bg-[#0c121e]/50 border border-white/10 rounded-xl overflow-hidden backdrop-blur-sm relative flex flex-col min-h-0">
                  <div id="resume-container" className="flex-grow overflow-y-auto overflow-x-hidden custom-scrollbar p-2 md:p-6 bg-[#1a1f2e] text-center">
-                     <Document
-                        file={resumePath}
-                        onLoadSuccess={onDocumentLoadSuccess}
-                        className="inline-block shadow-xl"
-                        loading={<div className="text-cyan-400 animate-pulse font-mono mt-10">LOADING_DOCUMENT_STREAM...</div>}
-                        error={<div className="text-red-400 font-mono mt-10">FAILED_TO_LOAD_DOCUMENT_STREAM</div>}
-                     >
-                        {Array.from(new Array(numPages || 0), (_, index) => (
-                           <Page 
-                              key={`page_${index + 1}`} 
-                              pageNumber={index + 1} 
-                              width={pageWidth}
-                              className="mb-6 resume-page"
-                              renderTextLayer={true}
-                              renderAnnotationLayer={true}
-                           />
-                        ))}
-                     </Document>
+                     <div className="w-full h-full min-h-[600px] rounded-xl overflow-hidden bg-[#0f1729]">
+                         <iframe
+                             title="Resume PDF"
+                             src={resumePath}
+                             className="w-full h-full border-none"
+                         />
+                     </div>
+                     <div className="mt-6 text-sm text-gray-400 font-mono">
+                         If the resume does not display, you can <a href={resumePath} className="text-cyan-400 underline">download it here</a>.
+                     </div>
                  </div>
             </div>
-            
-            <style>{`
-                /* Hide react-pdf canvas if not loaded to prevent white flash if any */
-                .resume-page canvas {
-                    margin-bottom: 0 !important;
-                }
-            `}</style>
         </section>
     );
 };
